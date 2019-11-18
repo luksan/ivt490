@@ -17,7 +17,7 @@ def main():
         now = datetime.now().isoformat()
         logging.info(now + " Received data: " + data)
         
-        with open("ivt490_raw_log.txt", "wt+") as fp:
+        with open("ivt490_raw_log.txt", "at") as fp:
             fp.write(now)
             fp.write(",")
             fp.write(data)
