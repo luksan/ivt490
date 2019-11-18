@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import logging
+from datetime import datetime
 
 import serial
 
@@ -12,10 +13,13 @@ def main():
     logging.info("Connected serial port " + repr(conn))
 
     while True:
-        data = conn.readline()
-        logging.info("Received data: " + data)
+        data = conn.readline().decode('ascii')
+        now = datetime.now().isoformat()
+        logging.info(now + " Received data: " + data)
         
         with open("ivt490_raw_log.txt", "wt+") as fp:
+            fp.write(now)
+            fp.write(",")
             fp.write(data)
     
     
