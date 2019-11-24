@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import logging
-from datetime import datetime
+from datetime import date, datetime
 
 import serial
 
@@ -17,7 +17,9 @@ def main():
         now = datetime.now().isoformat()
         logging.info(now + " Received data: " + data)
         
-        with open("ivt490_raw_log.txt", "at") as fp:
+        today = date.today().isoformat()
+        
+        with open("ivt490_raw_log_{:}.txt".format(today), "at") as fp:
             fp.write(now)
             fp.write(",")
             fp.write(data)
